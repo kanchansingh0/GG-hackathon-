@@ -76,7 +76,7 @@ xgboost>=1.4.2
 jupyter>=1.0.0
 ipython>=7.24.1
 ```
-### 4. Dataset Generation
+### 5. Dataset Generation
 
 The synthetic dataset uses these features:
 - fanin_count: Input gate count
@@ -91,22 +91,106 @@ python compare_ml_agents_detailed.py
 ```
 # RTL Timing Violation Predictor
 
-AI algorithm to predict combinational complexity/depth of signals to quickly identify timing violations in RTL designs using synthetic datasets.
+## Overview
+An AI-based approach to predict timing violations in RTL designs by analyzing combinational complexity and logic depth of signals before synthesis, reducing design iteration time and improving RTL code quality.
 
-## Problem Overview
+## Problem Statement
+Timing analysis in complex IP/SoC design traditionally requires synthesis, which is time-consuming. This project predicts combinational logic depth from RTL code to identify potential timing violations during the RTL design phase.
 
-Timing analysis is crucial in complex IP/SoC design, but timing reports are only generated after synthesis, which is time-consuming. This project creates an AI algorithm to predict combinational logic depth of signals in behavioral RTL to identify potential timing violations early in the design process.
+## Implemented Approaches
 
-## Key Concepts
+### 1. Machine Learning Models
 
-- **Combinational Complexity/Logic-depth**: Number of basic gates (AND/OR/NOT/NAND etc.) required to generate a signal following the longest path
-- **Timing Violation**: Indicates when combinational logic depth exceeds what's supported at a given frequency
+#### Primary Model: Random Forest Regressor
+- Implementation: `sklearn.ensemble.RandomForestRegressor`
+- Configuration:
+  ```python
+  params = {
+      'n_estimators': 200,
+      'max_depth': 15,
+      'min_samples_split': 5,
+      'min_samples_leaf': 2
+  }
+  ```
+- Advantages:
+  - Handles non-linear relationships in timing paths
+  - Provides feature importance analysis
+  - Robust to overfitting
 
-## Features
+### 2. Feature Engineering
 
-- Synthetic RTL dataset generation
-- Feature extraction from RTL
-- Timing violation prediction
-- Model training and evaluation
+#### Implemented Features
+1. **Fan-in Count** (1-10 gates)
+   - Measures input gate connections
+   - Impacts combinational depth
 
-## Project Structure
+2. **Fan-out Count** (1-8 outputs)
+   - Measures output connections
+   - Affects signal propagation
+
+3. **Logic Depth** (1-15 levels)
+   - Represents gate levels in path
+   - Key timing violation indicator
+
+4. **Operation Complexity** (0-1 normalized)
+   - Complexity score of operations
+   - Weighted impact on timing
+
+5. **Path Length** (0-1 normalized)
+   - Physical path characteristics
+   - Routing complexity measure
+
+
+### 3. Evaluation Metrics
+
+#### Implemented Metrics
+1. **Accuracy Metrics**
+   - R² Score
+   - Mean Squared Error (MSE)
+   - Root Mean Squared Error (RMSE)
+
+2. **Classification Metrics**
+   - Binary accuracy (threshold-based)
+   - Confusion matrix
+   - Precision and recall
+
+### 4. Visualization Methods
+
+1. **Confusion Matrix**
+   - Uses seaborn heatmap
+   - Shows true/false positives/negatives
+   - Helps identify prediction patterns
+
+2. **Feature Importance**
+   - Bar plots of feature weights
+   - Identifies key timing factors
+   - Guides design optimization
+
+## Results Analysis
+
+The model provides:
+- Timing violation predictions
+- Feature importance ranking
+- Performance metrics
+- Confusion matrix analysis
+
+## Implementation Details
+
+### Core Components
+1. **Model Training**
+   - Train-test split: 80-20
+   - Cross-validation: 5-fold
+   - Normalized features
+
+2. **Prediction Pipeline**
+   - Feature extraction
+   - Model prediction
+   - Threshold-based classification
+   - Performance evaluation
+
+### Key Files
+- `timing_rf_model.py`: Main model implementation
+- `compare_ml_agents_detailed.py`: Model evaluation
+- `model_metrics.py`: Performance metrics
+
+This implementation focuses on practical RTL timing violation prediction using Random Forest as the primary model, with comprehensive feature engineering and evaluation metrics.
