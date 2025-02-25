@@ -76,7 +76,19 @@ xgboost>=1.4.2
 jupyter>=1.0.0
 ipython>=7.24.1
 ```
+### 4. Dataset Generation
 
+The synthetic dataset uses these features:
+- fanin_count: Input gate count
+- fanout_count: Output count
+- logic_depth: Gate levels
+- operation_complexity: Operation complexity score
+- path_length: Signal path length
+
+To generate dataset:
+```bash
+python compare_ml_agents_detailed.py
+```
 # RTL Timing Violation Predictor
 
 AI algorithm to predict combinational complexity/depth of signals to quickly identify timing violations in RTL designs using synthetic datasets.
