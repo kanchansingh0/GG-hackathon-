@@ -1,0 +1,17 @@
+{
+    "metrics": {
+        "train_mse": 0.0,
+        "test_mse": 0.0,
+        "train_r2": 1.0,
+        "test_r2": NaN
+    },
+    "feature_importance": {
+        "setup_slack": 0.0,
+        "hold_slack": 0.0,
+        "timing_violation": 0.0,
+        "fanin_count": 0.0,
+        "fanout_count": 0.0,
+        "operation_complexity": 0.0,
+        "path_length": 0.0
+    }
+}

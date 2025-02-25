@@ -1,0 +1,66 @@
+Feature,Importance
+setup_slack fanout_count,0.0351691921431933
+hold_slack fanout_count,0.030804162933252284
+setup_slack fanin_count,0.0282776007615092
+fanin_count path_density,0.028268442188662698
+setup_slack^2,0.02675679824339431
+hold_slack fanin_count,0.026498506023023574
+hold_slack timing_score,0.02566503683586884
+fanin_count slack_ratio,0.025054146824690107
+setup_slack path_length,0.02498737154719224
+setup_slack hold_slack,0.02434400388370212
+path_length complexity_score,0.02424079912300908
+setup_slack path_density,0.02362057515084845
+fanin_count path_length,0.02308112951546242
+hold_slack path_length,0.022405249756526704
+hold_slack path_density,0.022204035323072104
+hold_slack complexity_score,0.021787994495970953
+setup_slack complexity_score,0.021315043787435487
+slack_ratio^2,0.02061837102284972
+fanout_count slack_ratio,0.020347964948098533
+path_length slack_ratio,0.019522870604630475
+setup_slack timing_score,0.018961873784181533
+slack_ratio complexity_score,0.018866623014435504
+hold_slack slack_ratio,0.0175889993925597
+slack_ratio path_density,0.017461157837442058
+setup_slack slack_ratio,0.01743401309450881
+hold_slack^2,0.01686946837094315
+fanout_count timing_score,0.016556478598258546
+timing_violation slack_ratio,0.01644657766109026
+path_length path_density,0.016243550216375458
+setup_slack,0.01623419070020207
+setup_slack timing_violation,0.015737519493616906
+hold_slack,0.015300180193430733
+complexity_score path_density,0.015276267667580317
+slack_ratio,0.01440260033409153
+path_density timing_score,0.014328582619857474
+fanout_count complexity_score,0.013949727298352074
+slack_ratio timing_score,0.013930772848414433
+hold_slack timing_violation,0.013928597489619653
+fanin_count timing_score,0.013727610837967535
+path_length timing_score,0.013336656725250797
+complexity_score timing_score,0.013265628117366188
+fanin_count fanout_count,0.012949360199669014
+fanin_count complexity_score,0.012778646124536684
+path_density^2,0.012684034926641502
+fanout_count path_density,0.011930154152310454
+fanout_count path_length,0.010783345128888757
+timing_violation complexity_score,0.010635579175206957
+path_length^2,0.009552747246936695
+complexity_score^2,0.00920206220731113
+timing_violation path_density,0.008480644033144275
+timing_violation path_length,0.00790172874483013
+path_density,0.00773082592500554
+timing_score,0.007626733242815407
+complexity_score,0.006984414790384529
+fanin_count^2,0.006743180931753814
+timing_violation timing_score,0.006337822849888019
+timing_score^2,0.005834051165500919
+timing_violation fanout_count,0.005421508349284189
+timing_violation fanin_count,0.0054063367195673765
+fanout_count^2,0.004996467755039944
+fanin_count,0.004280079034584294
+path_length,0.003882431712800646
+fanout_count,0.0022233256187185937
+timing_violation,0.00043753629838023505
+timing_violation^2,0.00038061225886340283
