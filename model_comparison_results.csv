@@ -1,0 +1,6 @@
+Model,Training Accuracy,Testing Accuracy
+Random Forest,0.9875,0.98
+Linear Regression,0.97625,0.985
+SVR,0.9625,0.96
+Neural Network,0.9675,0.98
+XGBoost,0.9975,0.985
