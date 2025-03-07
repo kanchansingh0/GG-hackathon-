@@ -77,5 +77,4 @@ if __name__ == '__main__':
     root = tk.Tk()
     root.withdraw()  # Hide the window
     
-    port = int(os.environ.get("PORT", 5000))  # Use PORT from environment variables
-    app.run(host='0.0.0.0', port=port)  # Bind to 0.0.0.0 for external access
+    app.run(host='0.0.0.0')  # Bind to 0.0.0.0 for external access
