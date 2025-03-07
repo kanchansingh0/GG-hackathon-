@@ -22,3 +22,9 @@ pytest>=6.2.4     # For testing
 # Development tools
 jupyter>=1.0.0    # For interactive development
 ipython>=7.24.1   # For interactive shell
+
+# Web application packages
+flask>=2.0.1      # Web framework
+gunicorn>=20.1.0  # Production WSGI server
+python-dotenv>=0.19.0  # For environment variables
+flask-cors>=3.0.10    # For handling CORS
