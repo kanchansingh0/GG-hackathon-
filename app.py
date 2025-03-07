@@ -3,6 +3,7 @@ import numpy as np
 import logging
 import tkinter as tk
 from src.prediction_interface import RTLPredictor, PredictionInterface
+import os
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -76,5 +77,5 @@ if __name__ == '__main__':
     root = tk.Tk()
     root.withdraw()  # Hide the window
     
-    # Start the Flask app
-    app.run(debug=True, port=5000) 
+    port = int(os.environ.get("PORT", 5000))  # Use PORT from environment variables
+    app.run(host='0.0.0.0', port=port)  # Bind to 0.0.0.0 for external access
