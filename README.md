@@ -14,22 +14,22 @@
 - 2GB free disk space
 
 ### 2. Install Virtual Environment
-bash
+`bash`
 python -m venv venv
 
 
 ### 3. Activate the Virtual Environment
 #### For Windows
-bash
+`bash`
 venv\Scripts\activate
 
 #### For MacOS/Linux
-bash
+`bash`
 source venv/bin/activate
 
 
 ### 4. Install Required Packages
-bash
+`bash`
 pip install -r requirements.txt
 
 
@@ -53,7 +53,7 @@ python -m src.predictor_interface
 ## 📌 Dataset Generation
 
 ### Generate Synthetic Dataset
-bash
+`bash`
 python compare_ml_agents_detailed.py
 
 
