@@ -1,8 +1,10 @@
 # RTL Timing Violation Predictor
 
-AI algorithm to predict combinational complexity/depth of signals to quickly identify timing violations in RTL designs using synthetic datasets.
+## AI algorithm to predict combinational complexity/depth of signals to quickly identify timing violations in RTL designs using synthetic datasets.
 
-## To install this project on your local IDE
+---
+
+## 📌 Installation Guide
 
 ### 1. System Requirements
 - Python 3.8 or higher
@@ -26,15 +28,15 @@ AI algorithm to predict combinational complexity/depth of signals to quickly ide
 
 ### 3. Project Setup
 
-1. *Clone the Repository*
+#### 1️⃣ Clone the Repository
 bash
 git clone <repository-url>
 cd GG-hackathon-
 
 
-2. *Create Virtual Environment*
+#### 2️⃣ Create Virtual Environment
 
-For Windows:
+*For Windows:*
 bash
 # Create virtual environment
 python -m venv venv
@@ -43,7 +45,7 @@ python -m venv venv
 .\venv\Scripts\activate
 
 
-For Linux/Mac:
+*For Linux/Mac:*
 bash
 # Create virtual environment
 python -m venv venv
@@ -52,29 +54,31 @@ python -m venv venv
 source venv/bin/activate
 
 
-3. *Install Required Packages*
+#### 3️⃣ Install Required Packages
 bash
 pip install -r requirements.txt
 
 
-4. *Set the PYTHONPATH environment variable:*
+#### 4️⃣ Set the PYTHONPATH environment variable:
 
-    - On Windows:
-    sh
-    set PYTHONPATH=%cd%\src
-    
+- *On Windows:*
+sh
+set PYTHONPATH=%cd%\src
 
-    - On macOS/Linux:
-    sh
-    export PYTHONPATH=$(pwd)/src
-    
 
-5. *Run the project:*
+- *On macOS/Linux:*
+sh
+export PYTHONPATH=$(pwd)/src
+
+
+#### 5️⃣ Run the project:
 sh
 python -m src.predictor_interface
 
 
-### 4. Required Packages
+---
+
+## 📌 Required Packages
 
 txt
 # Core ML packages
@@ -94,35 +98,41 @@ jupyter>=1.0.0
 ipython>=7.24.1
 
 
-### 5. Dataset Generation
+---
+
+## 📌 Dataset Generation
 
 The synthetic dataset uses these features:
-- fanin_count: Input gate count
-- fanout_count: Output count
-- logic_depth: Gate levels
-- operation_complexity: Operation complexity score
-- path_length: Signal path length
+- *fanin_count*: Input gate count
+- *fanout_count*: Output count
+- *logic_depth*: Gate levels
+- *operation_complexity*: Operation complexity score
+- *path_length*: Signal path length
 
-To generate dataset:
+*To generate dataset:*
 bash
 python compare_ml_agents_detailed.py
 
 
+---
+
 # RTL Timing Violation Predictor
 
-## Overview
+## 📌 Overview
 An AI-based approach to predict timing violations in RTL designs by analyzing combinational complexity and logic depth of signals before synthesis, reducing design iteration time and improving RTL code quality.
 
-## Problem Statement
+## 📌 Problem Statement
 Timing analysis in complex IP/SoC design traditionally requires synthesis, which is time-consuming. This project predicts combinational logic depth from RTL code to identify potential timing violations during the RTL design phase.
 
-## Implemented Approaches
+---
 
-### 1. Machine Learning Models
+## 📌 Implemented Approaches
 
-#### Primary Model: Random Forest Regressor
-- Implementation: sklearn.ensemble.RandomForestRegressor
-- Configuration:
+### 1️⃣ Machine Learning Models
+
+#### 🔹 Primary Model: Random Forest Regressor
+- *Implementation*: sklearn.ensemble.RandomForestRegressor
+- *Configuration:*
   python
   params = {
       'n_estimators': 200,
@@ -131,12 +141,12 @@ Timing analysis in complex IP/SoC design traditionally requires synthesis, which
       'min_samples_leaf': 2
   }
   
-- Advantages:
+- *Advantages:*
   - Handles non-linear relationships in timing paths
   - Provides feature importance analysis
   - Robust to overfitting
 
-### 2. Feature Engineering
+### 2️⃣ Feature Engineering
 
 #### Implemented Features
 1. *Fan-in Count* (1-10 gates)
@@ -159,9 +169,12 @@ Timing analysis in complex IP/SoC design traditionally requires synthesis, which
    - Physical path characteristics
    - Routing complexity measure
 
-### 3. Evaluation Metrics
+---
+
+### 3️⃣ Evaluation Metrics
 
 #### Implemented Metrics
+
 1. *Accuracy Metrics*
    - R² Score
    - Mean Squared Error (MSE)
@@ -172,7 +185,9 @@ Timing analysis in complex IP/SoC design traditionally requires synthesis, which
    - Confusion matrix
    - Precision and recall
 
-### 4. Visualization Methods
+---
+
+### 4️⃣ Visualization Methods
 
 1. *Confusion Matrix*
    - Uses seaborn heatmap
@@ -184,7 +199,9 @@ Timing analysis in complex IP/SoC design traditionally requires synthesis, which
    - Identifies key timing factors
    - Guides design optimization
 
-## Results Analysis
+---
+
+## 📌 Results Analysis
 
 The model provides:
 - Timing violation predictions
@@ -192,9 +209,11 @@ The model provides:
 - Performance metrics
 - Confusion matrix analysis
 
-## Implementation Details
+---
 
-### Core Components
+## 📌 Implementation Details
+
+### 🔹 Core Components
 1. *Model Training*
    - Train-test split: 80-20
    - Cross-validation: 5-fold
@@ -206,9 +225,12 @@ The model provides:
    - Threshold-based classification
    - Performance evaluation
 
-### Key Files
+### 🔹 Key Files
 - timing_rf_model.py: Main model implementation
 - compare_ml_agents_detailed.py: Model evaluation
 - model_metrics.py: Performance metrics
 
+---
+
+## 📌 Summary
 This implementation focuses on practical RTL timing violation prediction using Random Forest as the primary model, with comprehensive feature engineering and evaluation metrics.
