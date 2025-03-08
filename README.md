@@ -39,17 +39,17 @@ pip install -r requirements.txt
 
 ### 5. Set the PYTHONPATH environment variable
 #### On Windows
-sh
-set PYTHONPATH=%cd%\src
+```sh
+set PYTHONPATH=%cd%\src```
 
 #### On macOS/Linux
-sh
-export PYTHONPATH=$(pwd)/src
+```sh
+export PYTHONPATH=$(pwd)/src```
 
 
 ### 6. Run the project
-sh
-python -m src.predictor_interface
+```sh
+python -m src.predictor_interface```
 
 
 ---
