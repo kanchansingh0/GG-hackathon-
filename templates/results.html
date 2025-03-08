@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results</title>
+</head>
+<body>
+    <h1>Analysis Results</h1>
+    <ul>
+        <li>Setup Slack: {{ results.setup_slack }}</li>
+        <li>Hold Slack: {{ results.hold_slack }}</li>
+        <li>Timing Violation: {{ results.timing_violation }}</li>
+        <li>Fanin Count: {{ results.fanin_count }}</li>
+        <li>Fanout Count: {{ results.fanout_count }}</li>
+        <li>Path Length: {{ results.path_length }}</li>
+    </ul>
+    <a href="/">Upload another file</a>
+</body>
+</html>

@@ -1,9 +1,10 @@
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_file, render_template, redirect, url_for
 import numpy as np
 import logging
 import tkinter as tk
 from src.prediction_interface import RTLPredictor, PredictionInterface
 import os
+from analyze_rtl import analyze_image
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -14,10 +15,26 @@ app = Flask(__name__)
 # Initialize the predictor only (without GUI)
 predictor = RTLPredictor()
 
+UPLOAD_FOLDER = 'uploads'
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 @app.route('/')
 def home():
-    """Serve the main HTML page"""
-    return send_file('index.html')
+    return render_template('index.html')
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    if 'file' not in request.files:
+        return redirect(request.url)
+    file = request.files['file']
+    if file.filename == '':
+        return redirect(request.url)
+    if file:
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+        file.save(file_path)
+        results = analyze_image(file_path)
+        return render_template('results.html', results=results)
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -77,4 +94,4 @@ if __name__ == '__main__':
     root = tk.Tk()
     root.withdraw()  # Hide the window
     
-    app.run(host='0.0.0.0')  # Bind to 0.0.0.0 for external access
+    app.run(host='0.0.0.0', debug=True)  # Bind to 0.0.0.0 for external access
