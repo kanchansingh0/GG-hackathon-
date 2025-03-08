@@ -13,110 +13,51 @@
 - 4GB RAM minimum
 - 2GB free disk space
 
-### 2. IDE Setup
-
-#### For VS Code:
-1. Install VS Code Extensions:
-   - Python extension
-   - Pylance
-   - Jupyter
-   - Python Test Explorer
-
-#### For PyCharm:
-1. Enable Python Scientific Mode
-2. Install Python Scientific packages
-
-### 3. Project Setup
-
-#### 1️⃣ Clone the Repository
+### 2. Install Virtual Environment
 bash
-git clone <repository-url>
-cd GG-hackathon-
-
-
-#### 2️⃣ Create Virtual Environment
-
-*For Windows:*
-bash
-# Create virtual environment
 python -m venv venv
 
-# Activate virtual environment
-.\venv\Scripts\activate
 
-
-*For Linux/Mac:*
+### 3. Activate the Virtual Environment
+#### For Windows
 bash
-# Create virtual environment
-python -m venv venv
+venv\Scripts\activate
 
-# Activate virtual environment
+#### For MacOS/Linux
+bash
 source venv/bin/activate
 
 
-#### 3️⃣ Install Required Packages
+### 4. Install Required Packages
 bash
 pip install -r requirements.txt
 
 
-#### 4️⃣ Set the PYTHONPATH environment variable:
-
-- *On Windows:*
+### 5. Set the PYTHONPATH environment variable
+#### On Windows
 sh
 set PYTHONPATH=%cd%\src
 
-
-- *On macOS/Linux:*
+#### On macOS/Linux
 sh
 export PYTHONPATH=$(pwd)/src
 
 
-#### 5️⃣ Run the project:
+### 6. Run the project
 sh
 python -m src.predictor_interface
 
 
 ---
 
-## 📌 Required Packages
-
-txt
-# Core ML packages
-numpy>=1.21.0
-pandas>=1.3.0
-scikit-learn>=0.24.2
-
-# Visualization
-matplotlib>=3.4.2
-seaborn>=0.11.1
-
-# ML framework
-xgboost>=1.4.2
-
-# Development tools
-jupyter>=1.0.0
-ipython>=7.24.1
-
-
----
-
 ## 📌 Dataset Generation
 
-The synthetic dataset uses these features:
-- *fanin_count*: Input gate count
-- *fanout_count*: Output count
-- *logic_depth*: Gate levels
-- *operation_complexity*: Operation complexity score
-- *path_length*: Signal path length
-
-*To generate dataset:*
+### Generate Synthetic Dataset
 bash
 python compare_ml_agents_detailed.py
 
 
 ---
-
-# RTL Timing Violation Predictor
 
 ## 📌 Overview
 An AI-based approach to predict timing violations in RTL designs by analyzing combinational complexity and logic depth of signals before synthesis, reducing design iteration time and improving RTL code quality.
@@ -189,15 +130,39 @@ Timing analysis in complex IP/SoC design traditionally requires synthesis, which
 
 ### 4️⃣ Visualization Methods
 
-1. *Confusion Matrix*
-   - Uses seaborn heatmap
-   - Shows true/false positives/negatives
-   - Helps identify prediction patterns
+#### *Confusion Matrix*
+python
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.metrics import confusion_matrix
 
-2. *Feature Importance*
-   - Bar plots of feature weights
-   - Identifies key timing factors
-   - Guides design optimization
+# Sample confusion matrix
+y_true = [1, 0, 1, 1, 0, 0, 1]
+y_pred = [1, 0, 1, 0, 0, 1, 1]
+cm = confusion_matrix(y_true, y_pred)
+
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
+plt.xlabel("Predicted")
+plt.ylabel("Actual")
+plt.title("Confusion Matrix")
+plt.show()
+
+
+#### *Feature Importance*
+python
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Sample feature importance
+features = ["Fan-in", "Fan-out", "Logic Depth", "Operation Complexity", "Path Length"]
+importances = np.array([0.3, 0.2, 0.25, 0.15, 0.1])
+
+plt.barh(features, importances, color='skyblue')
+plt.xlabel("Importance")
+plt.ylabel("Feature")
+plt.title("Feature Importance Ranking")
+plt.show()
+
 
 ---
 
@@ -214,16 +179,26 @@ The model provides:
 ## 📌 Implementation Details
 
 ### 🔹 Core Components
-1. *Model Training*
-   - Train-test split: 80-20
-   - Cross-validation: 5-fold
-   - Normalized features
+#### *Model Training*
+python
+from sklearn.model_selection import train_test_split
 
-2. *Prediction Pipeline*
-   - Feature extraction
-   - Model prediction
-   - Threshold-based classification
-   - Performance evaluation
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+
+#### *Prediction Pipeline*
+python
+from sklearn.ensemble import RandomForestRegressor
+
+# Train model
+model = RandomForestRegressor(n_estimators=200, max_depth=15, min_samples_split=5, min_samples_leaf=2)
+model.fit(X_train, y_train)
+
+# Make predictions
+y_pred = model.predict(X_test)
+
+
+---
 
 ### 🔹 Key Files
 - timing_rf_model.py: Main model implementation
