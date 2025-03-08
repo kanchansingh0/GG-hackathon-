@@ -56,24 +56,23 @@ source venv/bin/activate
 bash
 pip install -r requirements.txt
 
+
 4. *Set the PYTHONPATH environment variable:*
 
     - On Windows:
-
-        sh
-        set PYTHONPATH=%cd%\src
-        
+    sh
+    set PYTHONPATH=%cd%\src
+    
 
     - On macOS/Linux:
-
-        sh
-        export PYTHONPATH=$(pwd)/src
-        
-
-5. Run the project:
-
     sh
-    python -m src.predictor_interface
+    export PYTHONPATH=$(pwd)/src
+    
+
+5. *Run the project:*
+sh
+python -m src.predictor_interface
+
 
 ### 4. Required Packages
 
@@ -94,6 +93,7 @@ xgboost>=1.4.2
 jupyter>=1.0.0
 ipython>=7.24.1
 
+
 ### 5. Dataset Generation
 
 The synthetic dataset uses these features:
@@ -106,6 +106,7 @@ The synthetic dataset uses these features:
 To generate dataset:
 bash
 python compare_ml_agents_detailed.py
+
 
 # RTL Timing Violation Predictor
 
@@ -157,7 +158,6 @@ Timing analysis in complex IP/SoC design traditionally requires synthesis, which
 5. *Path Length* (0-1 normalized)
    - Physical path characteristics
    - Routing complexity measure
-
 
 ### 3. Evaluation Metrics
 
