@@ -26,40 +26,58 @@ AI algorithm to predict combinational complexity/depth of signals to quickly ide
 
 ### 3. Project Setup
 
-1. **Clone the Repository**
-```bash
+1. *Clone the Repository*
+bash
 git clone <repository-url>
-cd RTL-Timing-Predictor
-```
+cd GG-hackathon-
 
-2. **Create Virtual Environment**
+
+2. *Create Virtual Environment*
 
 For Windows:
-```bash
+bash
 # Create virtual environment
 python -m venv venv
 
 # Activate virtual environment
 .\venv\Scripts\activate
-```
+
 
 For Linux/Mac:
-```bash
+bash
 # Create virtual environment
 python -m venv venv
 
 # Activate virtual environment
 source venv/bin/activate
-```
 
-3. **Install Required Packages**
-```bash
+
+3. *Install Required Packages*
+bash
 pip install -r requirements.txt
-```
+
+4. *Set the PYTHONPATH environment variable:*
+
+    - On Windows:
+
+        sh
+        set PYTHONPATH=%cd%\src
+        
+
+    - On macOS/Linux:
+
+        sh
+        export PYTHONPATH=$(pwd)/src
+        
+
+5. Run the project:
+
+    sh
+    python -m src.predictor_interface
 
 ### 4. Required Packages
 
-```txt
+txt
 # Core ML packages
 numpy>=1.21.0
 pandas>=1.3.0
@@ -75,7 +93,7 @@ xgboost>=1.4.2
 # Development tools
 jupyter>=1.0.0
 ipython>=7.24.1
-```
+
 ### 5. Dataset Generation
 
 The synthetic dataset uses these features:
@@ -86,9 +104,9 @@ The synthetic dataset uses these features:
 - path_length: Signal path length
 
 To generate dataset:
-```bash
+bash
 python compare_ml_agents_detailed.py
-```
+
 # RTL Timing Violation Predictor
 
 ## Overview
@@ -102,16 +120,16 @@ Timing analysis in complex IP/SoC design traditionally requires synthesis, which
 ### 1. Machine Learning Models
 
 #### Primary Model: Random Forest Regressor
-- Implementation: `sklearn.ensemble.RandomForestRegressor`
+- Implementation: sklearn.ensemble.RandomForestRegressor
 - Configuration:
-  ```python
+  python
   params = {
       'n_estimators': 200,
       'max_depth': 15,
       'min_samples_split': 5,
       'min_samples_leaf': 2
   }
-  ```
+  
 - Advantages:
   - Handles non-linear relationships in timing paths
   - Provides feature importance analysis
@@ -120,23 +138,23 @@ Timing analysis in complex IP/SoC design traditionally requires synthesis, which
 ### 2. Feature Engineering
 
 #### Implemented Features
-1. **Fan-in Count** (1-10 gates)
+1. *Fan-in Count* (1-10 gates)
    - Measures input gate connections
    - Impacts combinational depth
 
-2. **Fan-out Count** (1-8 outputs)
+2. *Fan-out Count* (1-8 outputs)
    - Measures output connections
    - Affects signal propagation
 
-3. **Logic Depth** (1-15 levels)
+3. *Logic Depth* (1-15 levels)
    - Represents gate levels in path
    - Key timing violation indicator
 
-4. **Operation Complexity** (0-1 normalized)
+4. *Operation Complexity* (0-1 normalized)
    - Complexity score of operations
    - Weighted impact on timing
 
-5. **Path Length** (0-1 normalized)
+5. *Path Length* (0-1 normalized)
    - Physical path characteristics
    - Routing complexity measure
 
@@ -144,24 +162,24 @@ Timing analysis in complex IP/SoC design traditionally requires synthesis, which
 ### 3. Evaluation Metrics
 
 #### Implemented Metrics
-1. **Accuracy Metrics**
+1. *Accuracy Metrics*
    - R² Score
    - Mean Squared Error (MSE)
    - Root Mean Squared Error (RMSE)
 
-2. **Classification Metrics**
+2. *Classification Metrics*
    - Binary accuracy (threshold-based)
    - Confusion matrix
    - Precision and recall
 
 ### 4. Visualization Methods
 
-1. **Confusion Matrix**
+1. *Confusion Matrix*
    - Uses seaborn heatmap
    - Shows true/false positives/negatives
    - Helps identify prediction patterns
 
-2. **Feature Importance**
+2. *Feature Importance*
    - Bar plots of feature weights
    - Identifies key timing factors
    - Guides design optimization
@@ -177,20 +195,20 @@ The model provides:
 ## Implementation Details
 
 ### Core Components
-1. **Model Training**
+1. *Model Training*
    - Train-test split: 80-20
    - Cross-validation: 5-fold
    - Normalized features
 
-2. **Prediction Pipeline**
+2. *Prediction Pipeline*
    - Feature extraction
    - Model prediction
    - Threshold-based classification
    - Performance evaluation
 
 ### Key Files
-- `timing_rf_model.py`: Main model implementation
-- `compare_ml_agents_detailed.py`: Model evaluation
-- `model_metrics.py`: Performance metrics
+- timing_rf_model.py: Main model implementation
+- compare_ml_agents_detailed.py: Model evaluation
+- model_metrics.py: Performance metrics
 
 This implementation focuses on practical RTL timing violation prediction using Random Forest as the primary model, with comprehensive feature engineering and evaluation metrics.
